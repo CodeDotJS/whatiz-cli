@@ -1,0 +1,53 @@
+{
+  "name": "whatiz-cli",
+  "version": "1.0.0",
+  "description": "CLI tool to display one-line manual node package descriptions available on npmjs",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codedotjs/whatiz-cli.git"
+  },
+  "author": "Rishi Giri <rushforlinux@gmail.com> (rishigiri.com)",
+  "bin": {
+    "curver": "cli.js"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "cli.js"
+  ],
+  "keywords": [
+    "cli-app",
+    "cli",
+    "npm",
+    "node",
+    "module",
+    "descriptions",
+    "descirbe",
+    "one-line",
+    "short",
+    "package"
+  ],
+  "dependencies": {
+    "curver": "*",
+    "colors": "*",
+    "yargs": "*"
+  },
+  "devDependencies": {
+    "ava": "*",
+    "execa": "^0.2.2",
+    "xo": "*"
+  },
+  "xo": {
+    "esnext": true
+  },
+  "bugs": {
+    "url": "https://github.com/codedotjs/whatiz-cli/issues"
+  },
+  "homepage": "https://github.com/codedotjs/whatiz-cli#readme",
+  "main": "cli.js"
+}
