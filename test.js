@@ -2,7 +2,7 @@ import childProcess from 'child_process';
 import test from 'ava';
 
 test.cb(t => {
-	childProcess.execFile('./cli.js', ['-u packstat'], {
+	childProcess.execFile('./cli.js', ['whatiz'], {
 		cwd: __dirname
 	}, (err, stdout) => {
 		t.ifError(err);
