@@ -1,7 +1,7 @@
 {
   "name": "whatiz-cli",
   "version": "1.0.0",
-  "description": "CLI tool to display one-line manual node package descriptions available on npmjs",
+  "description": "A simple tool to display one-line manual node package descriptions available on npmjs",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -9,7 +9,7 @@
   },
   "author": "Rishi Giri <rushforlinux@gmail.com> (rishigiri.com)",
   "bin": {
-    "curver": "cli.js"
+    "whatiz": "cli.js"
   },
   "engines": {
     "node": ">=4"
@@ -33,7 +33,7 @@
     "package"
   ],
   "dependencies": {
-    "curver": "*",
+    "whatiz": "*",
     "colors": "*",
     "yargs": "*"
   },
