@@ -1,6 +1,6 @@
 {
   "name": "whatiz-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple tool to display one-line manual node package descriptions available on npmjs",
   "license": "MIT",
   "repository": {
