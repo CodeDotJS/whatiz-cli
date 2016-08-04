@@ -1,36 +1,39 @@
-# whatiz-cli
+# ![whatiz-cli](media/whatiz.png)
 
-> CLI tool to display one-line manual node package descriptions available on npmjs.
+> Display one-line manual node package descriptions.
 
-[![Build Status](https://travis-ci.org/CodeDotJS/whatiz-cli.svg?branch=master)](https://travis-ci.org/CodeDotJS/whatiz-cli)
+<p align="center">
+	<img src="media/whatiz.gif">
+	<br>
+	<a href="https://travis-ci.org/CodeDotJS/whatiz-cli">
+	<img src="https://travis-ci.org/CodeDotJS/whatiz-cli.svg?branch=master">
+	</a>
+</p>
+
+`Works on macOS and Linux.`
+
+- `whatiz` checks for the description locally, if package not found, it 
+fetches the description from [`npmjs`](https://npmjs.com/)
 
 ## Install
+
+__`Required Node version :`__ __`^4`__
 
 ```
 $ npm install --global whatiz-cli
 ```
-__OR__
+__`OR`__
 ```
 $ sudo npm install --global whatiz-cli
 ```
 
+
 ## Usage
 ```
- Usage : whatiz [package-name]
+ Usage   : whatiz [ package-name ]
 
- ❱ Example : whatiz express
+ Example : whatiz browserify
 ```
-
-## Run
-```
-$ whatiz express
-
-Fast, unopinionated, minimalist web framework
-```
-
-## Screenshot
-
-![whatiz](http://rishigiri.com/github/whatiz.png)
 
 ## Related
 
