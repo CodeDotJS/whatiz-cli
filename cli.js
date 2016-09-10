@@ -20,9 +20,11 @@ const uniDir = '/node_modules/';
 
 const curDir = process.cwd() + uniDir + arg;
 const homeDir = os.homedir() + uniDir + arg;
+const remoteDir = '/usr/local/lib' + uniDir + arg
 
 const lodLocal = `${curDir}${'/package.json'}`;
 const lodGlobal = `${homeDir}${'/package.json'}`;
+const lodRemote = `${remoteDir}${'/package.json'}`;
 
 const url = `${'https://www.npmjs.com/package/'}${arg}`;
 
@@ -38,7 +40,7 @@ if (!arg || arg === '-h' || arg === '--help') {
 	process.exit(1);
 }
 
-if (!fs.existsSync(curDir) && !fs.existsSync(homeDir)) {
+if (!fs.existsSync(curDir) && !fs.existsSync(homeDir) && !fs.existsSync(remoteDir)) {
 	dns.lookup('npmjs.com', err => {
 		if (err && err.code === 'ENOTFOUND') {
 			logUpdate(`\n${fov} Please check your internet connection\n`);
@@ -57,6 +59,8 @@ if (!fs.existsSync(curDir) && !fs.existsSync(homeDir)) {
 	});
 } else if (fs.existsSync(curDir)) {
 	logUpdate(`\n${pre} ${require(lodLocal).description}\n`);
-} else {
+} else if (fs.existsSync(remoteDir)) {
+	logUpdate(`\n${pre} ${require(lodRemote).description}\n`);
+} else{
 	logUpdate(`\n${pre} ${require(lodGlobal).description}\n`);
 }
