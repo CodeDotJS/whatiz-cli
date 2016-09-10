@@ -20,7 +20,7 @@ const uniDir = '/node_modules/';
 
 const curDir = process.cwd() + uniDir + arg;
 const homeDir = os.homedir() + uniDir + arg;
-const remoteDir = '/usr/local/lib' + uniDir + arg
+const remoteDir = '/usr/local/lib' + uniDir + arg;
 
 const lodLocal = `${curDir}${'/package.json'}`;
 const lodGlobal = `${homeDir}${'/package.json'}`;
@@ -61,6 +61,6 @@ if (!fs.existsSync(curDir) && !fs.existsSync(homeDir) && !fs.existsSync(remoteDi
 	logUpdate(`\n${pre} ${require(lodLocal).description}\n`);
 } else if (fs.existsSync(remoteDir)) {
 	logUpdate(`\n${pre} ${require(lodRemote).description}\n`);
-} else{
+} else {
 	logUpdate(`\n${pre} ${require(lodGlobal).description}\n`);
 }
