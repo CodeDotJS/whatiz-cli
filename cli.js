@@ -9,6 +9,7 @@ const got = require('got');
 const cheerio = require('cheerio');
 const logUpdate = require('log-update');
 const chalk = require('chalk');
+const ora = require('ora');
 const updateNotifier = require('update-notifier');
 const pkg = require('./package.json');
 
@@ -16,11 +17,12 @@ updateNotifier({pkg}).notify();
 
 const arg = process.argv[2];
 
-const uniDir = '/node_modules/';
+const spinner = ora();
 
-const curDir = process.cwd() + uniDir + arg;
-const homeDir = os.homedir() + uniDir + arg;
-const remoteDir = '/usr/local/lib' + uniDir + arg;
+const nextPath = `/node_modules/${arg}`;
+const curDir = `${process.cwd()}${nextPath}`;
+const homeDir = `${os.homedir()}${nextPath}`;
+const remoteDir = `/usr/local/lib${nextPath}`;
 
 const lodLocal = `${curDir}${'/package.json'}`;
 const lodGlobal = `${homeDir}${'/package.json'}`;
@@ -45,22 +47,29 @@ if (!fs.existsSync(curDir) && !fs.existsSync(homeDir) && !fs.existsSync(remoteDi
 		if (err && err.code === 'ENOTFOUND') {
 			logUpdate(`\n${fov} Please check your internet connection\n`);
 		} else {
-			logUpdate(`\n${pre} ${arg} ${chalk.dim('is not installed, fetching description from npmjs')}\n`);
+			logUpdate();
+			spinner.text = `${arg} ${chalk.dim('is not installed, fetching description from npmjs')}`;
+			spinner.start();
 		}
 	});
 	got(url).then(res => {
 		const $ = cheerio.load(res.body);
 		const pkgDescription = $('.package-description').text();
+		spinner.stop();
 		logUpdate(`\n${pre} ${pkgDescription}\n`);
 	}).catch(err => {
 		if (err) {
+			spinner.stop();
 			logUpdate(`\n${fov} ${chalk.dim('Package')} ${arg} ${chalk.dim('does not exist')}\n`);
 		}
 	});
 } else if (fs.existsSync(curDir)) {
+	spinner.stop();
 	logUpdate(`\n${pre} ${require(lodLocal).description}\n`);
 } else if (fs.existsSync(remoteDir)) {
+	spinner.stop();
 	logUpdate(`\n${pre} ${require(lodRemote).description}\n`);
 } else {
+	spinner.stop();
 	logUpdate(`\n${pre} ${require(lodGlobal).description}\n`);
 }
