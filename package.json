@@ -1,6 +1,6 @@
 {
   "name": "whatiz-cli",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Display one-line manual node package descriptions",
   "license": "MIT",
   "repository": {
