@@ -5,6 +5,8 @@
 <p align="center">
 	<img src="media/whatiz.gif">
 	<br>
+	<code> Custom <b>whatis</b> for node modules</code>
+	<br>
 	<a href="https://travis-ci.org/CodeDotJS/whatiz-cli">
 	<img src="https://travis-ci.org/CodeDotJS/whatiz-cli.svg?branch=master">
 	</a>
@@ -12,8 +14,9 @@
 
 `Works on macOS and Linux.`
 
-- `whatiz` checks for the description locally, if package not found, it 
-fetches the description from [`npmjs`](https://npmjs.com/)
+__`workflow of whatiz :`__
+
+__`››`__ __`process.cwd()`__ __`››`__ __`os.homedir()`__ __`››`__ __`/usr/local/lib/`__ __`››`__ __[`npmjs`](https://npmjs.com)__
 
 ## Install
 
