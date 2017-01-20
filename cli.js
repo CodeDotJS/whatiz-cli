@@ -16,17 +16,13 @@ const pkg = require('./package.json');
 updateNotifier({pkg}).notify();
 
 const arg = process.argv[2];
-
 const spinner = ora();
 
-const nextPath = `/node_modules/${arg}`;
+const nextPath = `/node_modules/${arg}/package.json`;
 const curDir = `${process.cwd()}${nextPath}`;
 const homeDir = `${os.homedir()}${nextPath}`;
 const remoteDir = `/usr/local/lib${nextPath}`;
-
-const lodLocal = `${curDir}${'/package.json'}`;
-const lodGlobal = `${homeDir}${'/package.json'}`;
-const lodRemote = `${remoteDir}${'/package.json'}`;
+const nvmDir = `${os.homedir()}/.nvm/versions/node/v5.5.0/lib${nextPath}`;
 
 const url = `${'https://www.npmjs.com/package/'}${arg}`;
 
@@ -42,7 +38,7 @@ if (!arg || arg === '-h' || arg === '--help') {
 	process.exit(1);
 }
 
-if (!fs.existsSync(curDir) && !fs.existsSync(homeDir) && !fs.existsSync(remoteDir)) {
+if (!fs.existsSync(curDir) && !fs.existsSync(homeDir) && !fs.existsSync(remoteDir) && !fs.existsSync(nvmDir)) {
 	dns.lookup('npmjs.com', err => {
 		if (err && err.code === 'ENOTFOUND') {
 			logUpdate(`\n${fov} Please check your internet connection\n`);
@@ -65,11 +61,14 @@ if (!fs.existsSync(curDir) && !fs.existsSync(homeDir) && !fs.existsSync(remoteDi
 	});
 } else if (fs.existsSync(curDir)) {
 	spinner.stop();
-	logUpdate(`\n${pre} ${require(lodLocal).description}\n`);
+	logUpdate(`\n${pre} ${require(curDir).description}\n`);
 } else if (fs.existsSync(remoteDir)) {
 	spinner.stop();
-	logUpdate(`\n${pre} ${require(lodRemote).description}\n`);
+	logUpdate(`\n${pre} ${require(remoteDir).description}\n`);
+} else if (fs.existsSync(nvmDir)){
+	spinner.stop();
+	logUpdate(`\n${pre} ${require(nvmDir).description}\n`);
 } else {
 	spinner.stop();
-	logUpdate(`\n${pre} ${require(lodGlobal).description}\n`);
+	logUpdate(`\n${pre} ${require(homeDir).description}\n`);
 }
