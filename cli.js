@@ -61,14 +61,14 @@ if (!fs.existsSync(curDir) && !fs.existsSync(homeDir) && !fs.existsSync(remoteDi
 	});
 } else if (fs.existsSync(curDir)) {
 	spinner.stop();
-	logUpdate(`\n${pre} ${require('./package.json').description}\n`);
+	logUpdate(`\n${pre} ${require(curDir).description}\n`);
 } else if (fs.existsSync(remoteDir)) {
 	spinner.stop();
-	logUpdate(`\n${pre} ${require('./package.json').description}\n`);
+	logUpdate(`\n${pre} ${require(remoteDir).description}\n`);
 } else if (fs.existsSync(nvmDir)) {
 	spinner.stop();
-	logUpdate(`\n${pre} ${require('./package.json').description}\n`);
+	logUpdate(`\n${pre} ${require(nvmDir).description}\n`);
 } else {
 	spinner.stop();
-	logUpdate(`\n${pre} ${require('./package.json').description}\n`);
+	logUpdate(`\n${pre} ${require(homeDir).description}\n`);
 }
