@@ -3,7 +3,7 @@
 > Display one-line manual node package descriptions.
 
 <p align="center">
-	<img src="media/whatiz.gif">
+	<img src="https://raw.githubusercontent.com/CodeDotJS/whatiz-cli/master/media/whatiz-cli.gif">
 	<br>
 	<code> Custom <b>whatis</b> for node modules</code>
 	<br>
