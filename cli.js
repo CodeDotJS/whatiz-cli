@@ -38,10 +38,16 @@ if (!arg || arg === '-h' || arg === '--help') {
 	process.exit(1);
 }
 
+const message = module => {
+	spinner.stop();
+	logUpdate(`\n${pre} ${require(module).description}\n`);
+};
+
 if (!fs.existsSync(curDir) && !fs.existsSync(homeDir) && !fs.existsSync(remoteDir) && !fs.existsSync(nvmDir)) {
 	dns.lookup('npmjs.com', err => {
-		if (err && err.code === 'ENOTFOUND') {
-			logUpdate(`\n${fov} Please check your internet connection\n`);
+		if (err) {
+			logUpdate(`\n${fov} ${chalk.dim('Please check your internet connection')}\n`);
+			process.exit(1);
 		} else {
 			logUpdate();
 			spinner.text = `${arg} ${chalk.dim('is not installed, fetching description from npmjs')}`;
@@ -60,15 +66,11 @@ if (!fs.existsSync(curDir) && !fs.existsSync(homeDir) && !fs.existsSync(remoteDi
 		}
 	});
 } else if (fs.existsSync(curDir)) {
-	spinner.stop();
-	logUpdate(`\n${pre} ${require(curDir).description}\n`);
+	message(curDir);
 } else if (fs.existsSync(remoteDir)) {
-	spinner.stop();
-	logUpdate(`\n${pre} ${require(remoteDir).description}\n`);
+	message(remoteDir);
 } else if (fs.existsSync(nvmDir)) {
-	spinner.stop();
-	logUpdate(`\n${pre} ${require(nvmDir).description}\n`);
+	message(nvmDir);
 } else {
-	spinner.stop();
-	logUpdate(`\n${pre} ${require(homeDir).description}\n`);
+	message(homeDir);
 }
