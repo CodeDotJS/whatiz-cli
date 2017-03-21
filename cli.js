@@ -31,9 +31,9 @@ const fov = chalk.bold.red('›');
 
 if (!arg || arg === '-h' || arg === '--help') {
 	console.log(`
- ${chalk.cyan('Usage   :')} ${chalk.blue('whatiz')} [${chalk.dim(' package-name ')}]
+ ${chalk.cyan('Usage   :')} whatiz [package-name]
 
- ${chalk.cyan('Example :')} ${chalk.blue('whatiz')} ${chalk.yellow('browserify')}
+ ${chalk.cyan('Example :')} whatiz browserify
 	`);
 	process.exit(1);
 }
@@ -56,7 +56,7 @@ if (!fs.existsSync(curDir) && !fs.existsSync(homeDir) && !fs.existsSync(remoteDi
 	});
 	got(url).then(res => {
 		const $ = cheerio.load(res.body);
-		const pkgDescription = $('.package-description').text();
+		const pkgDescription = $('.markdown p, .markdown li').eq(0).text();
 		spinner.stop();
 		logUpdate(`\n${pre} ${pkgDescription}\n`);
 	}).catch(err => {
