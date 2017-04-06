@@ -14,13 +14,7 @@
 
 `Works on macOS and Linux.`
 
-__`workflow of whatiz :`__
-
-__`››`__ __`process.cwd()`__ __`››`__ __`os.homedir()`__ __`››`__ __`/usr/local/lib/`__ __`››`__ __[`npmjs`](https://npmjs.com)__
-
 ## Install
-
-__`Required Node version :`__ __`^4`__
 
 ```
 $ npm install --global whatiz-cli
@@ -33,7 +27,7 @@ $ sudo npm install --global whatiz-cli
 
 ## Usage
 ```
- Usage   : whatiz [ package-name ]
+ Usage   : whatiz [package-name]
 
  Example : whatiz browserify
 ```
@@ -50,4 +44,4 @@ $ sudo npm install --global whatiz-cli
 
 ## License
 
-MIT &copy; [Rishi Giri](http://rishigiri.com)
+MIT &copy; [Rishi Giri](http://codedotjs.github.io)
